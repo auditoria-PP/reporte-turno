@@ -27,14 +27,11 @@ input.err{border-color:#c0392b;background:#fdf0ef}
 input.good{border-color:#1D9E75;background:#edfaf4}
 input[readonly]{background:#f5f5f5;color:#888}
 .hint{font-size:11px;color:#aaa;margin-top:2px}
-.hint.err{color:#a93226}
-.hint.ok{color:#0F6E56}
-hr{border:none;border-top:1px solid #eee;margin:14px 0}
+.hint.err{color:#a93226}.hint.ok{color:#0F6E56}
 .card{border:1px solid #ddd;border-radius:8px;padding:14px;margin-bottom:12px;background:#fff}
 .card-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
 .card-title{font-size:13px;font-weight:bold;color:#333}
 .badge{font-size:11px;padding:2px 8px;border-radius:100px;font-weight:bold;background:#dbeafe;color:#1e40af}
-.badge.pend{background:#fef3c7;color:#92400e}
 .drow{display:grid;gap:8px;align-items:end;margin-bottom:8px}
 .drow.r4{grid-template-columns:90px 100px 1fr 110px 24px}
 .drow.o3{grid-template-columns:160px 110px 1fr 24px}
@@ -59,14 +56,6 @@ hr{border:none;border-top:1px solid #eee;margin:14px 0}
 .res-label.w{color:#92400e}
 .res-val{font-size:20px;font-weight:bold;color:#222}
 .res-val.w{color:#78350f}
-.pend-box{background:#fef3c7;border:1px solid #f59e0b;border-radius:8px;padding:12px;margin-bottom:14px;display:none}
-.pend-title{font-size:12px;font-weight:bold;color:#92400e;margin-bottom:8px;display:flex;justify-content:space-between}
-.pend-row{display:grid;grid-template-columns:80px 90px 1fr auto;gap:8px;align-items:center;padding:5px 0;border-bottom:1px solid #fde68a;font-size:13px}
-.pend-row:last-child{border-bottom:none}
-.pend-date{font-size:11px;color:#92400e}
-.pend-folio{font-family:monospace;color:#78350f;font-size:12px}
-.pend-monto{font-weight:bold;color:#451a03}
-.btn-aplicar{font-size:11px;padding:3px 10px;background:#185FA5;color:#fff;border:none;border-radius:100px;cursor:pointer}
 .tpv-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
 .tpv-sub{font-size:10px;font-weight:bold;color:#888;text-transform:uppercase;letter-spacing:.06em;margin:10px 0 6px;grid-column:1/-1;border-bottom:1px solid #eee;padding-bottom:4px}
 .total-bar{background:#f0f6ff;border-radius:8px;padding:10px 14px;display:flex;justify-content:space-between;align-items:center;margin:14px 0;border:1px solid #bfdbfe}
@@ -79,26 +68,19 @@ hr{border:none;border-top:1px solid #eee;margin:14px 0}
 .alert.warn{background:#fef3c7;color:#78350f;border:1px solid #f59e0b}
 .alert.danger{background:#fdf0ef;color:#641e16;border:1px solid #c0392b}
 .alert.success{background:#edfaf4;color:#0d3321;border:1px solid #1D9E75}
-.fchip{display:inline-block;font-size:11px;padding:1px 6px;border-radius:100px;margin:1px;font-family:monospace}
-.fchip.u{background:#fcd5b3;color:#4a1b0c}
-.fchip.g{background:#fef3c7;color:#451a03;border:1px dashed #f59e0b}
-.folios-wrap{font-size:11px;color:#888;margin-bottom:10px;display:none}
 .nav-btns{display:flex;gap:10px;margin-top:16px}
 .btn-nav{flex:1;padding:9px;font-size:13px;font-weight:bold;border:1px solid #ccc;border-radius:8px;background:#fff;color:#333;cursor:pointer}
 .btn-nav:hover{background:#f5f5f5}
 .btn-nav.fwd{background:#185FA5;color:#fff;border-color:#185FA5}
 .btn-nav.fwd:hover{background:#0C447C}
-.spinner{display:none;text-align:center;padding:20px;color:#185FA5;font-weight:bold}
 </style>
 </head>
 <body>
-<div class="header">Reporte de Turno — Grupo Restaurantero</div>
+<div class="header">Reporte de Turno — PIZZAS PLAZAo</div>
 <div class="container">
-
 <div class="alert warn" id="al-warn"></div>
 <div class="alert danger" id="al-dup"></div>
 <div class="alert success" id="al-ok"></div>
-<div class="spinner" id="spinner">Enviando reporte, por favor espera...</div>
 
 <div class="tabs">
   <button class="tab active" onclick="goTab(0)">1 — Encabezado</button>
@@ -109,505 +91,18 @@ hr{border:none;border-top:1px solid #eee;margin:14px 0}
   <button class="tab" onclick="goTab(5)">6 — Tarjetas</button>
 </div>
 
-<!-- PANEL 0: ENCABEZADO -->
 <div id="panel-0" class="panel active">
   <div class="sec">Identificación del turno</div>
   <div class="row3">
-    <div class="field">
-      <label>Sucursal <span class="req">*</span></label>
-      <select id="suc" onchange="onSucChange()">
+    <div class="field"><label>Sucursal <span class="req">*</span></label>
+      <select id="suc">
         <option value="">— selecciona —</option>
         <option>MIR</option><option>STA</option><option>COY</option><option>DIV</option>
         <option>CAF</option><option>UNIV</option><option>RENATO</option><option>XOC</option>
         <option>NAPOLES</option><option>ANZURES</option><option>LERMA</option>
-      </select>
-    </div>
-    <div class="field">
-      <label>Fecha <span class="req">*</span></label>
-      <input type="date" id="fecha"/>
-    </div>
-    <div class="field">
-      <label>Turno <span class="req">*</span></label>
+      </select></div>
+    <div class="field"><label>Fecha <span class="req">*</span></label><input type="date" id="fecha"/></div>
+    <div class="field"><label>Turno <span class="req">*</span></label>
       <select id="turno">
         <option value="">— selecciona —</option>
-        <option value="1">Turno 1</option>
-        <option value="2">Turno 2</option>
-        <option value="3">Turno 3</option>
-      </select>
-    </div>
-  </div>
-  <div class="field row1">
-    <label>Reporta <span class="req">*</span></label>
-    <input type="text" id="quien" placeholder="Nombre del gerente / encargado" oninput="syncCajero()"/>
-  </div>
-  <div class="sec">Resumen del turno</div>
-  <div class="resumen-bar">
-    <div class="res-card">
-      <div class="res-label">Venta del turno</div>
-      <input type="number" id="venta" min="0" step="0.01" placeholder="0.00"
-        style="font-size:18px;font-weight:bold;border:none;padding:4px 0;background:transparent"/>
-    </div>
-    <div class="res-card hl" id="apart-resumen" style="display:none">
-      <div class="res-label w">Retiros apartados para nómina</div>
-      <div class="res-val w" id="apart-total-display">$0.00</div>
-      <div style="font-size:11px;color:#92400e;margin-top:4px">Pendientes de aplicar como depósito evento</div>
-    </div>
-  </div>
-  <div class="nav-btns"><button class="btn-nav fwd" onclick="goTab(1)">Siguiente — Fondos →</button></div>
-</div>
-
-<!-- PANEL 1: FONDOS -->
-<div id="panel-1" class="panel">
-  <div class="sec">Fondos</div>
-  <div class="card">
-    <div class="row2">
-      <div class="field">
-        <label>Inicio de fondo</label>
-        <input type="number" id="fondo-inicio" min="0" step="0.01" placeholder="0.00"/>
-        <span class="hint">Monto con el que abre el turno</span>
-      </div>
-      <div class="field">
-        <label>Retiro de fondo</label>
-        <input type="number" id="fondo-retiro" min="0" step="0.01" placeholder="0.00"/>
-        <span class="hint">Monto retirado al cierre</span>
-      </div>
-    </div>
-  </div>
-  <div class="nav-btns">
-    <button class="btn-nav" onclick="goTab(0)">← Encabezado</button>
-    <button class="btn-nav fwd" onclick="goTab(2)">Siguiente — Retiros →</button>
-  </div>
-</div>
-
-<!-- PANEL 2: RETIROS -->
-<div id="panel-2" class="panel">
-  <div class="sec">Retiros de efectivo</div>
-  <div class="pend-box" id="pendientes-box">
-    <div class="pend-title">
-      <span>Retiros apartados pendientes en esta sucursal</span>
-      <span class="badge pend" id="pend-count">0 pendientes</span>
-    </div>
-    <div id="pendientes-lista"></div>
-    <div style="font-size:11px;color:#92400e;margin-top:6px">Pulsa "Aplicar" para registrar como depósito evento en Otros gastos</div>
-  </div>
-  <div class="card">
-    <div class="card-head">
-      <span class="card-title">Folios — <span id="suc-lbl" style="color:#888;font-weight:normal">selecciona sucursal en encabezado</span></span>
-      <span class="badge" id="turno-badge" style="display:none"></span>
-    </div>
-    <div class="folios-wrap" id="folios-wrap"><span id="fchips"></span></div>
-    <div class="col-heads r4">
-      <span class="col-head">Folio</span>
-      <span class="col-head">Monto</span>
-      <span class="col-head">Cajero</span>
-      <span class="col-head">Apartar</span>
-      <span></span>
-    </div>
-    <div id="retiros-container"></div>
-    <button class="btn-add" onclick="addRetiro()">+ agregar retiro</button>
-  </div>
-  <div class="nav-btns">
-    <button class="btn-nav" onclick="goTab(1)">← Fondos</button>
-    <button class="btn-nav fwd" onclick="goTab(3)">Siguiente — Otros gastos →</button>
-  </div>
-</div>
-
-<!-- PANEL 3: OTROS -->
-<div id="panel-3" class="panel">
-  <div class="sec">Otros movimientos</div>
-  <div class="card">
-    <div class="col-heads o3">
-      <span class="col-head">Tipo</span>
-      <span class="col-head">Monto</span>
-      <span class="col-head">Concepto / respaldo</span>
-      <span></span>
-    </div>
-    <div id="otros-container"></div>
-    <button class="btn-add" onclick="addOtro()">+ agregar concepto</button>
-  </div>
-  <div class="nav-btns">
-    <button class="btn-nav" onclick="goTab(2)">← Retiros</button>
-    <button class="btn-nav fwd" onclick="goTab(4)">Siguiente — Nómina →</button>
-  </div>
-</div>
-
-<!-- PANEL 4: NOMINA -->
-<div id="panel-4" class="panel">
-  <div class="sec">Gastos de nómina</div>
-  <div class="card">
-    <div class="col-heads n2">
-      <span class="col-head">Empleado</span>
-      <span class="col-head">Monto</span>
-      <span></span>
-    </div>
-    <div id="nomina-container"></div>
-    <button class="btn-add" onclick="addNomina()">+ agregar pago</button>
-  </div>
-  <div class="nav-btns">
-    <button class="btn-nav" onclick="goTab(3)">← Otros gastos</button>
-    <button class="btn-nav fwd" onclick="goTab(5)">Siguiente — Tarjetas →</button>
-  </div>
-</div>
-
-<!-- PANEL 5: TARJETAS + ENVÍO -->
-<div id="panel-5" class="panel">
-  <div class="sec">Totalizadoras de tarjeta</div>
-  <div class="card">
-    <div class="tpv-grid">
-      <span class="tpv-sub">TPV propias</span>
-      <div class="field"><label class="rlabel">TPV 1</label><input type="number" id="tpv1" min="0" step="0.01" placeholder="0.00" oninput="calcTotal()"/></div>
-      <div class="field"><label class="rlabel">TPV 2</label><input type="number" id="tpv2" min="0" step="0.01" placeholder="0.00" oninput="calcTotal()"/></div>
-      <div class="field"><label class="rlabel">TPV 3</label><input type="number" id="tpv3" min="0" step="0.01" placeholder="0.00" oninput="calcTotal()"/></div>
-      <div class="field"><label class="rlabel">TPV 4</label><input type="number" id="tpv4" min="0" step="0.01" placeholder="0.00" oninput="calcTotal()"/></div>
-      <div class="field"><label class="rlabel">TPV 5</label><input type="number" id="tpv5" min="0" step="0.01" placeholder="0.00" oninput="calcTotal()"/></div>
-      <div class="field"><label class="rlabel">TPV 6</label><input type="number" id="tpv6" min="0" step="0.01" placeholder="0.00" oninput="calcTotal()"/></div>
-      <div class="field"><label class="rlabel">TPV 7</label><input type="number" id="tpv7" min="0" step="0.01" placeholder="0.00" oninput="calcTotal()"/></div>
-      <div class="field"><label class="rlabel">TPV 8</label><input type="number" id="tpv8" min="0" step="0.01" placeholder="0.00" oninput="calcTotal()"/></div>
-      <span class="tpv-sub">AMEX</span>
-      <div class="field"><label class="rlabel">AMEX 1</label><input type="number" id="amex1" min="0" step="0.01" placeholder="0.00" oninput="calcTotal()"/></div>
-      <div class="field"><label class="rlabel">AMEX 2</label><input type="number" id="amex2" min="0" step="0.01" placeholder="0.00" oninput="calcTotal()"/></div>
-      <span class="tpv-sub">TPV prestada</span>
-      <div class="field"><label class="rlabel">TPV prestada 1</label><input type="number" id="tpvp1" min="0" step="0.01" placeholder="0.00" oninput="calcTotal()"/></div>
-      <div class="field"><label class="rlabel">TPV prestada 2</label><input type="number" id="tpvp2" min="0" step="0.01" placeholder="0.00" oninput="calcTotal()"/></div>
-    </div>
-    <div style="font-size:11px;color:#aaa">Deja en blanco las terminales que no apliquen</div>
-  </div>
-  <div class="total-bar">
-    <span>Total retiros + otros + nómina</span>
-    <span id="gran-total">$0.00</span>
-  </div>
-  <div class="field row1">
-    <label>Notas del turno</label>
-    <input type="text" id="notas" placeholder="Opcional — incidencias, observaciones"/>
-  </div>
-  <div class="nav-btns" style="margin-bottom:12px">
-    <button class="btn-nav" onclick="goTab(4)">← Nómina</button>
-  </div>
-  <button class="btn-send" id="btn-send" onclick="enviar()">Enviar reporte del turno</button>
-</div>
-
-</div><!-- /container -->
-
-<script>
-// ── Estado ───────────────────────────────────────────────────
-var retiros=[],otros=[],nominas=[],rId=0,oId=0,nId=0,apartados={};
-var pendientesActivos=[];
-var foliosDB={usados:[],ultimo:'00000'};
-
-var TIPOS_OTROS=['Gasto factura','Gasto no deducible','Gas','Basura','Fondo',
-  'Depósito evento','Gasolina','Préstamo / descuento','Bono','Otro ingreso'];
-
-// ── Navegación ───────────────────────────────────────────────
-function goTab(i){
-  document.querySelectorAll('.panel').forEach(function(p,idx){p.classList.toggle('active',idx===i);});
-  document.querySelectorAll('.tab').forEach(function(t,idx){t.classList.toggle('active',idx===i);});
-  if(i===2){
-    var t=document.getElementById('turno').value;
-    var b=document.getElementById('turno-badge');
-    if(t){b.textContent='Turno '+t;b.style.display='inline-block';}else b.style.display='none';
-  }
-}
-
-// ── Sucursal cambia: carga folios y pendientes desde Sheets ──
-function onSucChange(){
-  var suc=document.getElementById('suc').value;
-  document.getElementById('suc-lbl').textContent=suc||'selecciona sucursal en encabezado';
-  if(!suc)return;
-  // Cargar folios usados desde el backend
-  google.script.run.withSuccessHandler(function(res){
-    if(res.ok){
-      foliosDB.usados=res.foliosUsados;
-      foliosDB.ultimo=res.ultimo;
-      renderChips();
-      retiros.forEach(function(r){validateFolio(r);});
-    }
-  }).obtenerUltimosFolios(suc);
-  // Cargar pendientes
-  google.script.run.withSuccessHandler(function(res){
-    if(res.ok){
-      pendientesActivos=res.pendientes;
-      renderPendientes();
-    }
-  }).obtenerPendientes(suc);
-}
-
-function renderChips(){
-  var wrap=document.getElementById('folios-wrap');
-  var chips=document.getElementById('fchips');
-  var usados=foliosDB.usados;
-  if(!usados.length){wrap.style.display='none';return;}
-  wrap.style.display='block';
-  var nums=usados.map(function(f){return parseInt(f);}).sort(function(a,b){return a-b;});
-  var min=nums[0],max=nums[nums.length-1];
-  chips.innerHTML='';
-  for(var i=min;i<=max;i++){
-    var sp=document.createElement('span');
-    var pad=String(i).padStart(5,'0');
-    sp.className=nums.indexOf(i)>=0?'fchip u':'fchip g';
-    sp.textContent=nums.indexOf(i)>=0?pad:pad+'?';
-    chips.appendChild(sp);
-  }
-}
-
-function renderPendientes(){
-  var box=document.getElementById('pendientes-box');
-  var lista=document.getElementById('pendientes-lista');
-  var count=document.getElementById('pend-count');
-  var activos=pendientesActivos.filter(function(p){return !p.aplicado;});
-  if(!activos.length){box.style.display='none';return;}
-  box.style.display='block';
-  count.textContent=activos.length+' pendiente'+(activos.length>1?'s':'');
-  lista.innerHTML='';
-  activos.forEach(function(p,i){
-    var row=document.createElement('div');
-    row.className='pend-row';
-    row.innerHTML='<span class="pend-date">'+p.fecha+'</span>'
-      +'<span class="pend-folio">Folio '+p.folio+'</span>'
-      +'<span class="pend-monto">$'+parseFloat(p.monto).toLocaleString('es-MX',{minimumFractionDigits:2})+'</span>'
-      +'<button class="btn-aplicar" onclick="aplicarPendiente('+i+',\''+p.id+'\',\''+p.folio+'\','+p.monto+')">Aplicar</button>';
-    lista.appendChild(row);
-  });
-}
-
-function aplicarPendiente(idx,id,folio,monto){
-  pendientesActivos[idx].aplicado=true;
-  goTab(3);
-  addOtroConValor('Depósito evento',monto,'Folio apartado '+folio);
-  renderPendientes();
-  // Marcar en Sheets
-  google.script.run.aplicarPendiente(id,'formulario');
-  showAlert('warn','Retiro folio '+folio+' aplicado como depósito evento en Otros gastos.');
-}
-
-// ── Sincronizar cajero con quien reporta ─────────────────────
-function syncCajero(){
-  var v=document.getElementById('quien').value;
-  retiros.forEach(function(id){
-    var el=document.getElementById('rc-'+id);
-    if(el&&!el.dataset.manual)el.value=v;
-  });
-}
-
-// ── Retiros ──────────────────────────────────────────────────
-function addRetiro(){
-  var id=++rId;retiros.push(id);apartados[id]=false;
-  var quien=document.getElementById('quien').value;
-  var con=document.getElementById('retiros-container');
-  var div=document.createElement('div');
-  div.id='ret-'+id;div.className='drow r4';
-  div.innerHTML=
-    '<div class="field"><input type="text" id="rf-'+id+'" placeholder="00142" oninput="validateFolio('+id+')" style="font-family:monospace"/><span class="hint" id="rh-'+id+'"></span></div>'
-    +'<div class="field"><input type="number" id="rm-'+id+'" min="0" step="0.01" placeholder="0.00" oninput="calcTotal();updateApartadoResumen()"/></div>'
-    +'<div class="field"><input type="text" id="rc-'+id+'" placeholder="Cajero" value="'+quien+'" oninput="this.dataset.manual=\'1\'"/></div>'
-    +'<label class="apart-toggle" id="atog-'+id+'" onclick="toggleApart('+id+')">'
-    +'<input type="checkbox" id="ach-'+id+'" onclick="event.stopPropagation();toggleApart('+id+')"/>Para nómina</label>'
-    +'<button class="btn-rem" onclick="removeRetiro('+id+')">✕</button>';
-  con.appendChild(div);
-}
-
-function removeRetiro(id){
-  document.getElementById('ret-'+id).remove();
-  retiros=retiros.filter(function(r){return r!==id;});
-  delete apartados[id];
-  calcTotal();updateApartadoResumen();
-  retiros.forEach(function(r){revalidate(r);});
-}
-
-function toggleApart(id){
-  apartados[id]=!apartados[id];
-  var tog=document.getElementById('atog-'+id);
-  var chk=document.getElementById('ach-'+id);
-  if(tog)tog.classList.toggle('on',apartados[id]);
-  if(chk)chk.checked=apartados[id];
-  updateApartadoResumen();
-}
-
-function updateApartadoResumen(){
-  var total=0;
-  retiros.forEach(function(id){
-    if(apartados[id])total+=parseFloat(document.getElementById('rm-'+id).value)||0;
-  });
-  var res=document.getElementById('apart-resumen');
-  document.getElementById('apart-total-display').textContent='$'+total.toLocaleString('es-MX',{minimumFractionDigits:2,maximumFractionDigits:2});
-  res.style.display=total>0?'block':'none';
-}
-
-function validateFolio(id){
-  var suc=document.getElementById('suc').value;
-  var inp=document.getElementById('rf-'+id);
-  var hint=document.getElementById('rh-'+id);
-  if(!inp)return;
-  var val=inp.value.trim();
-  inp.className='';hint.textContent='';hint.className='hint';
-  if(!val||!suc)return;
-  var padded=val.padStart(5,'0');
-  var numVal=parseInt(val);
-  var otrosNums=retiros.filter(function(r){return r!==id;})
-    .map(function(r){return parseInt(document.getElementById('rf-'+r)&&document.getElementById('rf-'+r).value.trim()||'');})
-    .filter(function(n){return !isNaN(n);});
-  var numUltDB=parseInt(foliosDB.ultimo)||0;
-  var maxForm=otrosNums.length?Math.max.apply(null,otrosNums):NaN;
-  var numUlt=(!isNaN(maxForm)&&maxForm>numUltDB)?maxForm:numUltDB;
-  var dupDB=foliosDB.usados.indexOf(padded)>=0;
-  var dupForm=retiros.filter(function(r){
-    return r!==id&&document.getElementById('rf-'+r)&&document.getElementById('rf-'+r).value.trim().padStart(5,'0')===padded;
-  });
-  if(dupDB||dupForm.length){
-    inp.className='err';hint.textContent='Duplicado';hint.className='hint err';
-    showAlert('danger','Folio '+padded+' ya existe en '+suc+'. Verifica el comprobante.');
-  } else if(numVal>numUlt+1){
-    var s=numVal-numUlt-1;
-    inp.className='err';hint.textContent='Salto de '+s;hint.className='hint err';
-    showAlert('warn','Hay '+s+' folio(s) sin registrar antes de '+padded+'.');
-  } else {
-    inp.className='good';hint.textContent='OK';hint.className='hint ok';
-    hideAlerts();
-    retiros.filter(function(r){return r!==id;}).forEach(function(r){revalidate(r);});
-  }
-}
-
-function revalidate(id){
-  var inp=document.getElementById('rf-'+id);
-  if(inp&&inp.value.trim())validateFolio(id);
-}
-
-// ── Otros movimientos ────────────────────────────────────────
-function addOtro(){addOtroConValor('Gasto factura','','');}
-function addOtroConValor(tipo,monto,concepto){
-  var id=++oId;otros.push(id);
-  var con=document.getElementById('otros-container');
-  var div=document.createElement('div');div.id='otro-'+id;div.className='drow o3';
-  var opts=TIPOS_OTROS.map(function(t){return '<option'+(t===tipo?' selected':'')+'>'+t+'</option>';}).join('');
-  div.innerHTML='<div class="field"><select id="ot-'+id+'">'+opts+'</select></div>'
-    +'<div class="field"><input type="number" id="om-'+id+'" min="0" step="0.01" placeholder="0.00" value="'+(monto||'')+'" oninput="calcTotal()"/></div>'
-    +'<div class="field"><input type="text" id="oc-'+id+'" placeholder="Descripción breve" value="'+(concepto||'')+'"/></div>'
-    +'<button class="btn-rem" onclick="removeOtro('+id+')">✕</button>';
-  con.appendChild(div);
-  if(monto)calcTotal();
-}
-function removeOtro(id){
-  document.getElementById('otro-'+id).remove();
-  otros=otros.filter(function(o){return o!==id;});calcTotal();
-}
-
-// ── Nómina ───────────────────────────────────────────────────
-function addNomina(){
-  var id=++nId;nominas.push(id);
-  var con=document.getElementById('nomina-container');
-  var div=document.createElement('div');div.id='nom-'+id;div.className='drow n2';
-  div.innerHTML='<div class="field"><input type="text" id="ne-'+id+'" placeholder="Nombre del empleado"/></div>'
-    +'<div class="field"><input type="number" id="nm-'+id+'" min="0" step="0.01" placeholder="0.00" oninput="calcTotal()"/></div>'
-    +'<button class="btn-rem" onclick="removeNomina('+id+')">✕</button>';
-  con.appendChild(div);
-}
-function removeNomina(id){
-  document.getElementById('nom-'+id).remove();
-  nominas=nominas.filter(function(n){return n!==id;});calcTotal();
-}
-
-// ── Total ────────────────────────────────────────────────────
-function calcTotal(){
-  var t=0;
-  retiros.forEach(function(id){t+=parseFloat(document.getElementById('rm-'+id)&&document.getElementById('rm-'+id).value)||0;});
-  otros.forEach(function(id){t+=parseFloat(document.getElementById('om-'+id)&&document.getElementById('om-'+id).value)||0;});
-  nominas.forEach(function(id){t+=parseFloat(document.getElementById('nm-'+id)&&document.getElementById('nm-'+id).value)||0;});
-  document.getElementById('gran-total').textContent='$'+t.toLocaleString('es-MX',{minimumFractionDigits:2,maximumFractionDigits:2});
-}
-
-// ── Alertas ──────────────────────────────────────────────────
-function showAlert(type,msg){
-  hideAlerts();
-  var el=document.getElementById('al-'+type);
-  if(el){el.textContent=msg;el.style.display='block';}
-}
-function hideAlerts(){
-  ['warn','dup','ok'].forEach(function(t){
-    var e=document.getElementById('al-'+t);if(e)e.style.display='none';
-  });
-}
-
-// ── Enviar ───────────────────────────────────────────────────
-function enviar(){
-  var suc=document.getElementById('suc').value;
-  var fecha=document.getElementById('fecha').value;
-  var turno=document.getElementById('turno').value;
-  var quien=document.getElementById('quien').value.trim();
-  var venta=document.getElementById('venta').value;
-  if(!suc||!fecha||!turno||!quien||!venta){
-    goTab(0);showAlert('warn','Completa todos los campos del encabezado antes de enviar.');return;
-  }
-  var hayErr=retiros.some(function(id){return document.getElementById('rf-'+id)&&document.getElementById('rf-'+id).className.indexOf('err')>=0;});
-  if(hayErr){goTab(2);showAlert('danger','Corrige los folios con error antes de enviar.');return;}
-
-  // Armar payload
-  var payload={
-    sucursal:suc, fecha:fecha, turno:turno, quien:quien,
-    venta:parseFloat(venta)||0,
-    fondoInicio:parseFloat(document.getElementById('fondo-inicio').value)||0,
-    fondoRetiro:parseFloat(document.getElementById('fondo-retiro').value)||0,
-    retiros:retiros.map(function(id){
-      return {
-        folio:document.getElementById('rf-'+id).value.trim(),
-        monto:parseFloat(document.getElementById('rm-'+id).value)||0,
-        cajero:document.getElementById('rc-'+id).value.trim(),
-        apartado:apartados[id]||false
-      };
-    }).filter(function(r){return r.monto>0||r.folio;}),
-    otros:otros.map(function(id){
-      return {
-        tipo:document.getElementById('ot-'+id).value,
-        monto:parseFloat(document.getElementById('om-'+id).value)||0,
-        concepto:document.getElementById('oc-'+id).value.trim()
-      };
-    }).filter(function(o){return o.monto>0;}),
-    nomina:nominas.map(function(id){
-      return {
-        empleado:document.getElementById('ne-'+id).value.trim(),
-        monto:parseFloat(document.getElementById('nm-'+id).value)||0
-      };
-    }).filter(function(n){return n.monto>0;}),
-    tarjetas:{
-      TPV1:document.getElementById('tpv1').value,
-      TPV2:document.getElementById('tpv2').value,
-      TPV3:document.getElementById('tpv3').value,
-      TPV4:document.getElementById('tpv4').value,
-      TPV5:document.getElementById('tpv5').value,
-      TPV6:document.getElementById('tpv6').value,
-      TPV7:document.getElementById('tpv7').value,
-      TPV8:document.getElementById('tpv8').value,
-      AMEX1:document.getElementById('amex1').value,
-      AMEX2:document.getElementById('amex2').value,
-      TPVP1:document.getElementById('tpvp1').value,
-      TPVP2:document.getElementById('tpvp2').value
-    },
-    notas:document.getElementById('notas').value.trim()
-  };
-
-  document.getElementById('btn-send').disabled=true;
-  document.getElementById('spinner').style.display='block';
-  hideAlerts();
-
-  google.script.run
-    .withSuccessHandler(function(res){
-      document.getElementById('spinner').style.display='none';
-      document.getElementById('btn-send').disabled=false;
-      if(res.ok){
-        showAlert('ok','Reporte enviado correctamente — '+suc+', turno '+turno+', '+fecha);
-      } else {
-        showAlert('danger','Error al guardar: '+res.mensaje);
-      }
-    })
-    .withFailureHandler(function(err){
-      document.getElementById('spinner').style.display='none';
-      document.getElementById('btn-send').disabled=false;
-      showAlert('danger','Error de conexión: '+err.message);
-    })
-    .recibirReporte(payload);
-}
-
-// ── Init ─────────────────────────────────────────────────────
-document.getElementById('fecha').valueAsDate=new Date();
-addRetiro();addOtro();addNomina();
-</script>
-</body>
-</html>
+        <option value="1">Turno 1</option><option value="2">Turno 2</option><option value="3">Turno 3</option>
